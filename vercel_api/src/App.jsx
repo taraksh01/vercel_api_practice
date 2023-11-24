@@ -9,9 +9,12 @@ function App() {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.572646&lng=88.36389500000001"
+      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.572646&lng=88.36389500000001",
+      { mode: "no-cors" }
     );
+    console.log(data);
     const json = await data?.json();
+    console.log(json);
     setData(
       json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
         ?.restaurants
