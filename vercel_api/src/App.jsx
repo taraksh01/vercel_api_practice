@@ -2,21 +2,25 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState(null);
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/homepage/getCards?lat=22.572646&lng=88.36389500000001"
+      `https://api.allorigins.win/get?url=${encodeURIComponent(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627"
+      )}`
     );
-    console.log(data);
+
     const json = await data?.json();
-    console.log(json);
+    const jsonData = JSON.parse(json?.contents);
+
+    // console.log(jsonData.data);
+    // console.log(typeof json.contents);
     setData(
-      json?.data?.success?.cards[4]?.gridWidget?.gridElements?.infoWithStyle
-        ?.restaurants
+      jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
     );
   };
 
