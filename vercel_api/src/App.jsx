@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,7 +24,7 @@ function App() {
     );
   };
 
-  return <>{console.log(data)}</>;
+  return <h1>{data[0]?.info?.name}</h1>;
 }
 
 export default App;
